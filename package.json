@@ -1,0 +1,31 @@
+{
+  "name": "rest-api-mongo",
+  "version": "1.0.0",
+  "description": "REST API MONGO",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --timeout 10000",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nirmalrevhari/rest-api-mongo.git"
+  },
+  "author": "Nirmal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nirmalrevhari/rest-api-mongo/issues"
+  },
+  "homepage": "https://github.com/nirmalrevhari/rest-api-mongo#readme",
+  "dependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "express": "^4.17.1",
+    "mocha": "^9.0.1",
+    "mongoose": "^5.13.7",
+    "swagger-express-mw": "^0.7.0"
+  }
+}

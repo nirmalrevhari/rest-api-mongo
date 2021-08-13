@@ -1,0 +1,57 @@
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: rest-api-mongo
+host: 'localhost:5000'
+basePath: /api/
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /records:
+    x-swagger-router-controller: controller
+    post:
+      description: Retrieve data
+      operationId: listRecords
+      parameters:
+        - name: data
+          in: body
+          description: Payload to create a scheduleStore
+          schema:
+            $ref: '#/definitions/records'
+        - name: page
+          in: query
+          type: integer
+          description: Page number of the request
+        - name: count
+          in: query
+          type: integer
+          description: Number of categories per page
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+definitions:
+  records:
+    required:
+      - startDate
+      - endDate
+      - minCount
+      - maxCount
+    properties:
+      startDate:
+        type: string
+      endDate:
+        type: string
+      minCount:
+        type: number
+      maxCount:
+        type: number
