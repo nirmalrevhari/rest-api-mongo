@@ -13,12 +13,8 @@ const list = (_req, _res) => {
     let page = _req['query']['page'] ? parseInt(_req['query']['page']) : 1; // page of the result to be returned
     let count = _req['query']['count'] ? parseInt(_req['query']['count']) : '';  // number of result to be returned. If not specified, it will return all records
 
-    return Promise.resolve()
+    return validate(ip)
         .then(() => {
-            if (isNaN(new Date(ip.startDate).valueOf()) ||
-                isNaN(new Date(ip.endDate).valueOf())) {
-                throw 'Please pass valid date';
-            }
             let aggregateQuery = [
                 {
                     $project: {
@@ -56,6 +52,16 @@ const list = (_req, _res) => {
             _output['error'] = _err;
             return _res.status(500).json(_output);
         });
+}
+
+const validate = (ip) => {
+    return new Promise((resolve, reject) => {
+        if (isNaN(new Date(ip.startDate).valueOf()) ||
+            isNaN(new Date(ip.endDate).valueOf())) {
+            return reject('Please pass valid date');
+        }
+        else return resolve();
+    })
 }
 
 module.exports = {
